@@ -23,7 +23,7 @@ export const enquirySchema = z
     message: z.string().trim().max(1500).optional().or(z.literal("")),
     consent: z.literal(true, { error: "Please agree so we can reply" }),
     /** Honeypot. Real visitors never see or fill it. */
-    company: z.string().max(0).optional().or(z.literal("")),
+    company: z.string().max(200).optional().or(z.literal("")),
     /** Milliseconds the form was open; bots submit instantly. */
     elapsedMs: z.number().int().nonnegative(),
   })
