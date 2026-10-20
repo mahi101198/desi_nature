@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "ghee",
+    "name": "Ghee",
+    "summary": "Ghee made from cow or buffalo milk. Tell us the quantity you need and we will reply with what we can supply, the source and the batch details.",
+    "askAbout": [
+      "Whether it is cow or buffalo milk ghee",
+      "How it was made and when the batch was prepared",
+      "The FSSAI licence or registration number on the label",
+      "Pack sizes, price and delivery to your pin code"
+    ],
+    "relatedPosts": ["how-to-store-ghee-at-home"],
+    "order": 1
+  },
+  {
+    "slug": "honey",
+    "name": "Honey",
+    "summary": "Honey from Indian beekeepers. Availability depends on the flowering season, so we confirm the source and harvest before you order.",
+    "askAbout": [
+      "Where and in which season the honey was harvested",
+      "Whether it is single-flower or multi-flower honey",
+      "The FSSAI licence or registration number on the label",
+      "Pack sizes, price and delivery to your pin code"
+    ],
+    "relatedPosts": [],
+    "order": 2
+  },
+  {
+    "slug": "grains-and-flours",
+    "name": "Grains and flours",
+    "summary": "Wheat, millets, rice and stone-ground flours, sourced by season. Ask for what is in stock and when it was harvested or milled.",
+    "askAbout": [
+      "Variety and harvest season",
+      "Milling date for flours",
+      "Cleaning and packing method",
+      "Pack sizes, price and delivery to your pin code"
+    ],
+    "relatedPosts": [],
+    "order": 3
+  }
+]

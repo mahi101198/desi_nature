@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "storage-and-kitchen",
+    "name": "Storage and kitchen",
+    "description": "How to keep ghee, honey, grains and other farm foods in good condition in Indian homes, through heat, humidity and monsoon."
+  },
+  {
+    "slug": "buying-guides",
+    "name": "Buying guides",
+    "description": "What to check, what to ask and what labels actually tell you before you buy farm-sourced food."
+  },
+  {
+    "slug": "garden-and-field",
+    "name": "Garden and field",
+    "description": "Practical notes for Indian kitchen gardens, terraces and small plots: soil, compost, pests and fruiting."
+  },
+  {
+    "slug": "sourcing",
+    "name": "Sourcing",
+    "description": "How farm-to-home supply works, what it can and cannot promise, and how Desi Nature handles it."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "slug": "cow-ghee-500ml",
+  "name": "Cow ghee, 500 ml",
+  "category": "ghee",
+  "summary": "One true sentence about this product.",
+  "description": "What it is, where it comes from and how it is made. Only facts the owner has checked.",
+  "verified": true,
+  "verifiedBy": "Owner name",
+  "verifiedAt": "2026-11-01",
+  "origin": "District, State",
+  "sizes": ["500 ml"],
+  "priceInr": 0,
+  "availability": "on-enquiry",
+  "fssaiLicence": "Licence or registration number as printed on the label",
+  "relatedPosts": ["how-to-store-ghee-at-home"]
+}

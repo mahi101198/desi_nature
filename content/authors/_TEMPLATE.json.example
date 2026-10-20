@@ -1,0 +1,9 @@
+{
+  "slug": "firstname-lastname",
+  "name": "Firstname Lastname",
+  "type": "person",
+  "role": "What this person really does, e.g. 'Runs sourcing for Desi Nature'",
+  "bio": "Two or three true sentences supplied by the person. No invented credentials.",
+  "sameAs": ["https://www.linkedin.com/in/example"],
+  "ownerSupplied": true
+}

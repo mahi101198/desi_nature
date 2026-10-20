@@ -1,0 +1,8 @@
+{
+  "publishMode": "review",
+  "articlesPerWeek": 2,
+  "maxDraftsPerRun": 2,
+  "minWords": 800,
+  "requireHumanReviewForHealth": true,
+  "notes": "publishMode: 'review' (Mode A, default) never publishes on its own. 'autonomous' (Mode B) may publish approved-quality drafts automatically, but only when an AI provider is configured, every quality gate passes, every source is verified, and the article is not health-sensitive. Environment variable PUBLISH_MODE overrides this file."
+}
