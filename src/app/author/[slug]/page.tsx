@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticleCard } from "@/components/ArticleCard";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PageHero } from "@/components/PageHero";
 import { JsonLd } from "@/components/JsonLd";
 import { absoluteUrl } from "@/config/site";
 import { getPublicAuthors } from "@/lib/content/catalog";
@@ -29,22 +29,27 @@ export default async function AuthorPage({ params }: PageProps<"/author/[slug]">
   const posts = getVisiblePosts().filter((p) => p.author === slug);
 
   return (
-    <div className="wrap pt-10">
-      <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: author.name, path: `/author/${slug}` }]} />
-      <div className="mt-10 max-w-[44rem]">
-        <h1 className="t-head">{author.name}</h1>
-        {author.role && <p className="t-lead mt-4 italic">{author.role}</p>}
-        <p className="mt-6">{author.bio}</p>
-      </div>
+    <>
+      <PageHero
+        crumbs={[
+          { name: "Home", path: "/" },
+          { name: author.name, path: `/author/${slug}` },
+        ]}
+        eyebrow={author.role}
+        title={author.name}
+        intro={author.bio}
+      />
       {posts.length > 0 && (
-        <section aria-labelledby="by-title" className="mt-16">
-          <h2 id="by-title" className="t-lead">
-            Articles
-          </h2>
-          <div className="mt-6 grid md:grid-cols-3 gap-3">
-            {posts.map((p, i) => (
-              <ArticleCard key={p.slug} post={p} index={i} />
-            ))}
+        <section aria-labelledby="by-title" className="section-tight pb-24">
+          <div className="container-x">
+            <h2 id="by-title" className="h-section">
+              Articles
+            </h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              {posts.map((p) => (
+                <ArticleCard key={p.slug} post={p} />
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -58,6 +63,6 @@ export default async function AuthorPage({ params }: PageProps<"/author/[slug]">
           ...(author.sameAs.length ? { sameAs: author.sameAs } : {}),
         }}
       />
-    </div>
+    </>
   );
 }

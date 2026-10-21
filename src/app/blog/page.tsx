@@ -1,6 +1,7 @@
+import { ArrowRight, Hourglass } from "lucide-react";
 import Link from "next/link";
 import { ArticleCard } from "@/components/ArticleCard";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PageHero } from "@/components/PageHero";
 import { categoryPostCounts, getCategories } from "@/lib/content/catalog";
 import { getVisiblePosts } from "@/lib/content/posts";
 import { upcomingTopics } from "@/lib/pipeline/topics";
@@ -16,77 +17,94 @@ export const metadata = pageMetadata({
 export default function BlogIndex() {
   const posts = getVisiblePosts();
   const counts = categoryPostCounts();
-  const categories = getCategories().filter((c) => (counts.get(c.slug) ?? 0) > 0);
+  const categories = getCategories();
+  const linkable = categories.filter((c) => (counts.get(c.slug) ?? 0) > 0);
   const upcoming = upcomingTopics(8).filter((t) => !posts.some((p) => p.slug === t.slug));
+  const [featured, ...rest] = posts;
 
   return (
-    <div className="wrap pt-10">
-      <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Journal", path: "/blog" }]} />
-      <div className="reveal grid md:grid-cols-12 gap-x-8 gap-y-6 mt-10 items-end">
-        <h1 className="md:col-span-7 t-head">The journal</h1>
-        <p className="md:col-span-4 md:col-start-9 max-w-[34ch]">
-          Guides to keeping and choosing farm food in Indian homes. Each one lists its sources at the end.
-        </p>
-      </div>
-
-      {categories.length > 0 && (
-        <nav aria-label="Categories" className="mt-12">
-          <ul className="flex flex-wrap gap-2">
-            {categories.map((c) => (
-              <li key={c.slug}>
-                <Link href={`/categories/${c.slug}`} className="btn btn-quiet min-h-11 text-base">
-                  {c.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-
-      <section aria-labelledby="articles-title" className="mt-12">
-        <h2 id="articles-title" className="sr-only">
-          Articles
-        </h2>
-        {posts.length > 0 ? (
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
-            {posts.map((post, i) => (
-              <ArticleCard key={post.slug} post={post} index={i} />
-            ))}
-          </div>
-        ) : (
-          <div className="bg-surface p-8 md:p-12 grid md:grid-cols-2 gap-8">
-            <p className="t-lead">The first guides are being checked against their sources and will appear here soon.</p>
-            <p>
-              Meanwhile, you can{" "}
-              <Link href="/contact" className="link">
-                send us a question
-              </Link>{" "}
-              about ghee, honey or grains. Good questions often become articles.
-            </p>
-          </div>
+    <>
+      <PageHero
+        crumbs={[
+          { name: "Home", path: "/" },
+          { name: "Journal", path: "/blog" },
+        ]}
+        eyebrow="The journal"
+        title="Guides for the Indian kitchen and garden"
+        intro="How to store, choose and grow food at home, written for Indian seasons. Every guide lists the sources it relies on."
+      >
+        {linkable.length > 0 && (
+          <nav aria-label="Categories" className="mt-8">
+            <ul className="flex flex-wrap gap-2">
+              {linkable.map((c) => (
+                <li key={c.slug}>
+                  <Link href={`/categories/${c.slug}`} className="btn btn-ghost btn-sm">
+                    {c.name}
+                    <span className="rounded-full bg-bg-2 px-2 py-0.5 text-xs">{counts.get(c.slug)}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         )}
+      </PageHero>
+
+      <section aria-labelledby="articles-title" className="section-tight">
+        <div className="container-x">
+          <h2 id="articles-title" className="sr-only">
+            Articles
+          </h2>
+          {posts.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {featured && (
+                <div className="reveal md:col-span-2 lg:col-span-3">
+                  <ArticleCard post={featured} featured />
+                </div>
+              )}
+              {rest.map((post) => (
+                <div key={post.slug} className="reveal">
+                  <ArticleCard post={post} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="card flex flex-col items-start gap-5 p-8 sm:flex-row sm:items-center sm:p-10">
+              <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-ghee-soft text-honey">
+                <Hourglass className="size-7" aria-hidden="true" />
+              </span>
+              <div className="flex-1">
+                <h3 className="h-card">The first guides are being checked</h3>
+                <p className="muted mt-1">Each one is published only after its sources have been read and confirmed.</p>
+              </div>
+              <Link href="/contact" className="btn">
+                Ask us a question <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </div>
+          )}
+        </div>
       </section>
 
       {upcoming.length > 0 && (
-        <section aria-labelledby="upcoming-title" className="mt-[var(--gap-section)] grid md:grid-cols-12 gap-x-8 gap-y-8">
-          <div className="md:col-span-4">
-            <h2 id="upcoming-title" className="t-head">
-              Being researched
-            </h2>
-            <p className="mt-4 text-muted">Topics we are working on. They are published only once their facts are checked.</p>
+        <section aria-labelledby="upcoming-title" className="section-tight pb-24">
+          <div className="container-x grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">Coming up</p>
+              <h2 id="upcoming-title" className="h-section mt-3">
+                Being researched
+              </h2>
+              <p className="lead mt-4">Topics we are working on. They go live once their facts are checked.</p>
+            </div>
+            <ol className="reveal-stagger grid gap-3 sm:grid-cols-2 lg:col-span-8">
+              {upcoming.map((t) => (
+                <li key={t.id} className="card flex flex-col gap-2 p-5">
+                  <span className="pill w-fit">{categories.find((c) => c.slug === t.category)?.name}</span>
+                  <span className="font-display text-lg leading-snug">{t.workingTitle}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-          <ol className="md:col-span-7 md:col-start-6 space-y-4">
-            {upcoming.map((t) => (
-              <li key={t.id} className="bg-surface px-5 py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
-                <span className="t-body">{t.workingTitle}</span>
-                <span className="text-muted">
-                  {getCategories().find((c) => c.slug === t.category)?.name}
-                </span>
-              </li>
-            ))}
-          </ol>
         </section>
       )}
-    </div>
+    </>
   );
 }

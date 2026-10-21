@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, CookingPot, Sprout } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -17,7 +18,7 @@ type Month = {
   link?: { href: string; label: string };
 };
 
-const MONTHS: Month[] = [
+export const MONTHS: Month[] = [
   { name: "January", short: "Jan", season: "Rabi, growing", fields: "Wheat, mustard and gram are growing through the cool months. Mustard is in flower across much of the north.", kitchen: "Ghee sets solid in cold kitchens. That is a change of texture, not spoilage.", link: { href: "/blog/how-to-store-ghee-at-home", label: "Storing ghee in winter" } },
   { name: "February", short: "Feb", season: "Rabi, ripening", fields: "Rabi crops fill their grain. Early vegetables from winter sowing are at their best.", kitchen: "A good month to use up last year's stored grain before the new harvest." },
   { name: "March", short: "Mar", season: "Rabi harvest begins · zaid sowing", fields: "Harvest of rabi crops begins in many states. Short summer crops such as cucumber, melons and moong are sown.", kitchen: "Kitchens warm up. Move ghee away from the stove before summer arrives.", link: { href: "/blog/how-to-store-ghee-at-home", label: "Storing ghee in summer" } },
@@ -45,48 +46,74 @@ export function SeasonCalendar({ initialMonth, liveSlugs }: { initialMonth: numb
   // Only link to articles that are live on this deployment.
   const link = m.link && liveSlugs.includes(m.link.href.replace("/blog/", "")) ? m.link : undefined;
   return (
-    <div className="grid md:grid-cols-12 gap-x-8 gap-y-10">
-      <div className="md:col-span-5">
-        <div role="group" aria-label="Choose a month" className="grid grid-cols-4 gap-1">
+    <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="lg:col-span-5">
+        <div role="group" aria-label="Choose a month" className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-4">
           {MONTHS.map((x, i) => (
             <button
               key={x.short}
               type="button"
               aria-pressed={i === month}
               onClick={() => setMonth(i)}
-              className={`min-h-12 t-body transition-colors duration-150 ${
-                i === month ? "bg-paper text-ink" : "bg-[#28512f] text-[var(--leaf-ink)] hover:bg-[#3a6b44]"
+              className={`min-h-12 rounded-full text-[0.95rem] font-bold transition-all duration-200 ${
+                i === month
+                  ? "bg-ghee text-ink shadow-[0_8px_20px_-8px_rgba(233,169,59,0.8)]"
+                  : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/15 hover:text-white"
               }`}
             >
               {x.short}
             </button>
           ))}
         </div>
-        <p className="t-small mt-4">
+        <p className="mt-5 text-sm text-white/60">
           Seasons as used in Indian agriculture. Exact timing varies by state, crop and the year&apos;s monsoon.
         </p>
       </div>
-      <div className="md:col-span-7" aria-live="polite">
-        <h3 className="t-head">{m.name}</h3>
-        <p className="t-lead mt-2 italic">{m.season}</p>
-        <dl className="mt-8 grid sm:grid-cols-2 gap-8">
-          <div>
-            <dt className="t-body italic">In the fields</dt>
-            <dd className="mt-2">{m.fields}</dd>
+      <div className="lg:col-span-7" aria-live="polite">
+        <div className="rounded-[28px] border border-white/15 bg-white/[0.07] p-6 backdrop-blur sm:p-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <h3 className="text-4xl text-white sm:text-5xl">{m.name}</h3>
+            <span className="pill pill-dark">{m.season}</span>
           </div>
-          <div>
-            <dt className="t-body italic">In the kitchen</dt>
-            <dd className="mt-2">{m.kitchen}</dd>
-            {link && (
-              <dd className="mt-3">
-                <Link href={link.href} className="link">
-                  {link.label}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl bg-white/[0.06] p-5">
+              <p className="flex items-center gap-2 font-bold text-white">
+                <Sprout className="size-5 text-ghee" aria-hidden="true" /> In the fields
+              </p>
+              <p className="mt-2 text-white/75">{m.fields}</p>
+            </div>
+            <div className="rounded-2xl bg-white/[0.06] p-5">
+              <p className="flex items-center gap-2 font-bold text-white">
+                <CookingPot className="size-5 text-ghee" aria-hidden="true" /> In the kitchen
+              </p>
+              <p className="mt-2 text-white/75">{m.kitchen}</p>
+              {link && (
+                <Link href={link.href} className="mt-3 inline-flex items-center gap-1.5 font-bold text-ghee hover:underline">
+                  {link.label} <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
-              </dd>
-            )}
+              )}
+            </div>
           </div>
-        </dl>
+        </div>
       </div>
     </div>
+  );
+}
+
+/** Small "this month" chip for the hero, showing the visitor's current month. */
+export function SeasonChip({ initialMonth }: { initialMonth: number }) {
+  const [month, setMonth] = useState(initialMonth);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMonth(new Date().getMonth());
+  }, []);
+  const m = MONTHS[month];
+  return (
+    <a href="#seasons" className="block no-underline">
+      <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-leaf">
+        <Sprout className="size-4" aria-hidden="true" /> This month in the fields
+      </span>
+      <span className="mt-1 block font-display text-lg leading-snug text-ink">{m.season}</span>
+    </a>
   );
 }

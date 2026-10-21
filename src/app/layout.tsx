@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { EB_Garamond } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { RevealScript } from "@/components/Reveal";
@@ -10,11 +10,16 @@ import { getSiteEnv } from "@/lib/env";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
-const garamond = EB_Garamond({
-  variable: "--font-garamond",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
+  axes: ["SOFT", "opsz"],
+  display: "swap",
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -35,14 +40,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ebe5e3",
+  themeColor: "#fbf8f2",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={garamond.variable} suppressHydrationWarning>
+    <html lang="en-IN" className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body className="min-h-svh flex flex-col">
         <RevealScript />
         <a href="#main" className="skip-link">

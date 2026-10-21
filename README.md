@@ -46,6 +46,19 @@ npm run check             # all of the above
 
 CI runs the same checks on every push and pull request (`.github/workflows/ci.yml`).
 
+## Photos
+
+The site ships with illustrated artwork. To use real photographs, add files to `public/images/` with these names (`.webp`, `.jpg`, `.png` or `.avif`, at least 1600 px wide); they replace the artwork automatically on the next build:
+
+| File name | Where it appears |
+| --- | --- |
+| `hero-ghee` | Homepage hero, large image |
+| `hero-honey`, `hero-grains` | Homepage hero, small images |
+| `product-ghee`, `product-honey`, `product-grains-and-flours` | Food cards and the Farm foods page |
+| `about-farm` | About page and the homepage "Why Desi Nature" panel |
+
+Article covers come from each article's `featuredImage` frontmatter. Only use photographs you own or are licensed to use, and never present stock photos as your own products or farm.
+
 ## Writing and publishing
 
 See [docs/CONTENT-WORKFLOW.md](docs/CONTENT-WORKFLOW.md). In short:

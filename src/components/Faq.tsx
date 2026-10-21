@@ -1,25 +1,24 @@
+import { Plus } from "lucide-react";
+
 export type FaqItem = { q: string; a: string };
 
-/** Accordion without rules between rows; space does the separating. */
 export function Faq({ items }: { items: FaqItem[] }) {
   return (
-    <div className="space-y-5">
+    <div className="flex flex-col gap-3">
       {items.map((item) => (
-        <details key={item.q} className="group">
-          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 t-body [&::-webkit-details-marker]:hidden">
+        <details key={item.q} className="group card overflow-hidden transition-colors open:border-[#d6ccbc] open:bg-white">
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[1.05rem] font-bold [&::-webkit-details-marker]:hidden">
             <span>{item.q}</span>
-            <span aria-hidden="true" className="relative size-4 shrink-0 transition-transform duration-200 group-open:rotate-180">
-              <span className="absolute left-0 top-1/2 h-[2px] w-[9px] origin-right rotate-45 bg-current" />
-              <span className="absolute right-0 top-1/2 h-[2px] w-[9px] origin-left -rotate-45 bg-current" />
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-bg-2 text-forest transition-transform duration-300 group-open:rotate-45">
+              <Plus className="size-4" aria-hidden="true" />
             </span>
           </summary>
-          <p className="mt-2 max-w-[52ch]">{item.a}</p>
+          <p className="muted px-5 pb-5 pr-14">{item.a}</p>
         </details>
       ))}
     </div>
   );
 }
-
 export const GENERAL_FAQ: FaqItem[] = [
   {
     q: "Why are there no prices or a cart?",
@@ -42,3 +41,4 @@ export const GENERAL_FAQ: FaqItem[] = [
     a: "Every article lists its sources, and we keep health claims out unless they are backed by strong evidence and reviewed. If you find a mistake, tell us and we will correct it.",
   },
 ];
+

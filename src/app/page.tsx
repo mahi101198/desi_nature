@@ -1,14 +1,23 @@
+import {
+  ArrowRight,
+  BadgeCheck,
+  CalendarRange,
+  FileSearch,
+  HandCoins,
+  MessageSquareText,
+  PackageCheck,
+  Search,
+} from "lucide-react";
 import Link from "next/link";
 import { ArticleCard } from "@/components/ArticleCard";
-import { FoodDrawing } from "@/components/Drawings";
-import { EnquiryCoupon } from "@/components/EnquiryCoupon";
-import { EnquirySlip } from "@/components/EnquirySlip";
 import { Faq, GENERAL_FAQ } from "@/components/Faq";
-import { FoodShowcase, type ShowcaseItem } from "@/components/home/FoodShowcase";
-import { HeroFolders } from "@/components/home/HeroFolders";
+import { Hero } from "@/components/home/Hero";
 import { SeasonCalendar } from "@/components/home/SeasonCalendar";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Visual } from "@/components/Visual";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { siteConfig } from "@/config/site";
-import { getProductCategories } from "@/lib/content/catalog";
+import { getCategories, getProductCategories } from "@/lib/content/catalog";
 import { getVisiblePosts } from "@/lib/content/posts";
 import { upcomingTopics } from "@/lib/pipeline/topics";
 import { pageMetadata } from "@/lib/seo";
@@ -19,204 +28,262 @@ export const metadata = pageMetadata({
   path: "/",
 });
 
+const ART = { ghee: "ghee", honey: "honey", "grains-and-flours": "grains" } as const;
+
+const steps = [
+  { icon: MessageSquareText, title: "Tell us what you need", text: "The food, the quantity and your pin code — by form or WhatsApp." },
+  { icon: FileSearch, title: "Get the details in writing", text: "Where it comes from, batch and packing details, price and delivery cost." },
+  { icon: PackageCheck, title: "Decide in your own time", text: "Ask anything else. Nothing is charged until you confirm the order." },
+];
+
+const values = [
+  { icon: Search, title: "Transparent sourcing", text: "Every reply names the source and batch. If we don't know something, we say so." },
+  { icon: CalendarRange, title: "Seasonal, not stockpiled", text: "Farm food follows the harvest. We tell you what's available now, not what a catalogue claims." },
+  { icon: BadgeCheck, title: "No unproven claims", text: "No 'organic', 'A2' or health promises without documents for that batch." },
+  { icon: HandCoins, title: "Pay only when sure", text: "No cart, no advance payment. You confirm in writing first." },
+];
+
+const marquee = ["Ghee", "Honey", "Grains & flours", "Batch details on request", "Sourced by season", "Guides with sources", "No payment until you confirm"];
+
 export default function HomePage() {
   const posts = getVisiblePosts();
   const liveSlugs = posts.map((p) => p.slug);
-  const shownSlugs = new Set(liveSlugs);
-  const upcoming = upcomingTopics(6).filter((t) => !shownSlugs.has(t.slug)).slice(0, Math.max(0, 4 - posts.length));
-  const foods: ShowcaseItem[] = getProductCategories().map((c) => {
-    const read = c.relatedPosts.find((s) => shownSlugs.has(s));
-    const post = posts.find((p) => p.slug === read);
-    return {
-      slug: c.slug as ShowcaseItem["slug"],
-      name: c.name,
-      summary: c.summary,
-      askAbout: c.askAbout,
-      readHref: post ? `/blog/${post.slug}` : `/products#${c.slug}`,
-      readLabel: post ? post.title : `More about ${c.name.toLowerCase()}`,
-    };
-  });
+  const categories = getCategories();
+  const upcoming = upcomingTopics(8).filter((t) => !liveSlugs.includes(t.slug)).slice(0, 4);
+  const foods = getProductCategories();
+  const [featured, ...rest] = posts;
 
   return (
     <>
-      <HeroFolders />
+      <Hero />
 
-      {/* Intro: title, note, facts row */}
-      <section aria-labelledby="intro-title" className="wrap pt-[8.75rem] pb-[7.5rem]">
-        <div className="reveal grid md:grid-cols-12 gap-x-8 gap-y-6 items-end">
-          <h2 id="intro-title" className="md:col-span-6 t-head">
-            Farm food, asked for by name
-          </h2>
-          <p className="md:col-span-4 md:col-start-9 max-w-[30ch]">
-            Desi Nature works by enquiry. You tell us what you need; we tell you exactly what we have, where it comes
-            from and what it costs.
-          </p>
-        </div>
-        <dl className="reveal mt-[7.5rem] grid grid-cols-2 md:flex md:justify-between gap-x-8 gap-y-8">
-          {[
-            ["Ghee, honey, grains", "Three foods, sourced by season"],
-            ["Enquiry first", "Details in writing before you pay"],
-            ["Sources listed", "Every journal article shows its references"],
-          ].map(([fact, note]) => (
-            <div key={fact} className="max-w-[18rem]">
-              <dt className="t-lead">{fact}</dt>
-              <dd className="mt-2 text-muted">
-                {note}
-              </dd>
+      {/* Marquee */}
+      <div className="border-y border-line bg-white py-5" aria-hidden="true">
+        <div className="marquee">
+          {[0, 1].map((k) => (
+            <div key={k} className="marquee-track">
+              {marquee.map((m) => (
+                <span key={m} className="flex items-center gap-3 whitespace-nowrap font-display text-xl text-ink-2">
+                  <span className="size-2 rounded-full bg-ghee" />
+                  {m}
+                </span>
+              ))}
             </div>
           ))}
-        </dl>
+        </div>
+      </div>
+
+      {/* Farm foods */}
+      <section aria-labelledby="foods-title" className="section">
+        <div className="container-x">
+          <SectionHeading
+            id="foods-title"
+            eyebrow="Farm foods"
+            title="What you can ask us for"
+            intro="Availability changes with the season and the batch, so we confirm everything when you enquire."
+            action={
+              <Link href="/products" className="arrow-link shrink-0">
+                All farm foods <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            }
+          />
+          <div className="reveal-stagger mt-12 grid gap-6 md:grid-cols-3">
+            {foods.map((c) => (
+              <article key={c.slug} className="card card-hover group relative flex flex-col overflow-hidden">
+                <Visual
+                  photo={`product-${c.slug}`}
+                  art={ART[c.slug as keyof typeof ART] ?? "field"}
+                  alt={`${c.name}`}
+                  className="aspect-[4/3]"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="h-card">{c.name}</h3>
+                    <span className="pill pill-gold">By enquiry</span>
+                  </div>
+                  <p className="muted">{c.summary}</p>
+                  <Link
+                    href={`/contact?product=${c.slug}`}
+                    className="arrow-link mt-auto pt-2 after:absolute after:inset-0"
+                  >
+                    Ask about {c.name.toLowerCase()} <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section aria-labelledby="how-title" className="section bg-bg-2">
+        <div className="container-x">
+          <SectionHeading
+            id="how-title"
+            eyebrow="How it works"
+            title="Ordering, without the guesswork"
+            intro="Three steps, all in writing. You can stop at any of them."
+            align="center"
+          />
+          <div className="relative mt-14">
+          <div aria-hidden="true" className="absolute left-[16%] right-[16%] top-[4.5rem] hidden border-t-2 border-dashed border-[#d9cdb9] md:block" />
+          <ol className="reveal-stagger relative grid gap-6 md:grid-cols-3">
+            {steps.map(({ icon: Icon, title, text }, i) => (
+              <li key={title} className="card relative flex flex-col items-center p-8 text-center">
+                <span className="relative flex size-20 items-center justify-center rounded-full bg-forest text-white shadow-[var(--shadow-lg)]">
+                  <Icon className="size-8" aria-hidden="true" />
+                  <span className="absolute -right-1 -top-1 flex size-8 items-center justify-center rounded-full bg-ghee text-sm font-extrabold text-ink">
+                    {i + 1}
+                  </span>
+                </span>
+                <h3 className="h-card mt-6">{title}</h3>
+                <p className="muted mt-2">{text}</p>
+              </li>
+            ))}
+          </ol>
+          </div>
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            <Link href="/contact" className="btn btn-lg">
+              Start an enquiry <ArrowRight className="size-5" aria-hidden="true" />
+            </Link>
+            <WhatsAppButton placement="home-how" label="Ask on WhatsApp" />
+          </div>
+        </div>
+      </section>
+
+      {/* Seasons: the live element */}
+      <section id="seasons" aria-labelledby="season-title" className="section bg-forest-glow text-white">
+        <div className="container-x">
+          <SectionHeading
+            id="season-title"
+            eyebrow="Farm calendar"
+            title="This month in Indian fields"
+            intro="What's being sown and harvested across India, and what it means for your kitchen."
+            light
+          />
+          <div className="mt-12">
+            <SeasonCalendar initialMonth={new Date().getMonth()} liveSlugs={liveSlugs} />
+          </div>
+        </div>
       </section>
 
       {/* Journal */}
-      <section aria-labelledby="journal-title" className="wrap">
-        <div className="reveal">
-          <h2 id="journal-title" className="t-head">
-            From the journal
-          </h2>
-        </div>
-        <div className="reveal mt-10 grid md:grid-cols-2 gap-3">
-          {posts.slice(0, 4).map((post, i) => (
-            <ArticleCard key={post.slug} post={post} index={i} />
-          ))}
-          {upcoming.map((topic, i) => (
-            <article
-              key={topic.id}
-              className="flex flex-col justify-between gap-6 p-7 md:p-8 min-h-[18rem]"
-              style={{ background: ["#e3dad6", "#d7cbc5", "#cfc1ba"][(i + posts.length) % 3] }}
-            >
-              <div>
-                <h3 className="t-lead">{topic.workingTitle}</h3>
-                <p className="mt-4 text-muted">For {topic.reader.charAt(0).toLowerCase() + topic.reader.slice(1)}.</p>
+      <section aria-labelledby="journal-title" className="section">
+        <div className="container-x">
+          <SectionHeading
+            id="journal-title"
+            eyebrow="The journal"
+            title="Practical guides, with sources"
+            intro="How to store, choose and grow food in Indian homes. Every guide lists the sources it relies on."
+            action={
+              <Link href="/blog" className="arrow-link shrink-0">
+                Open the journal <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            }
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-12">
+            {featured ? (
+              <div className="reveal lg:col-span-12">
+                <ArticleCard post={featured} featured />
               </div>
-              <p>Being researched</p>
-            </article>
-          ))}
+            ) : null}
+            {rest.slice(0, 3).map((p) => (
+              <div key={p.slug} className="reveal lg:col-span-4">
+                <ArticleCard post={p} />
+              </div>
+            ))}
+            {upcoming.length > 0 && (
+              <div className="reveal lg:col-span-12">
+                <div className="card p-6 sm:p-8">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="h-card">{posts.length ? "Coming up next" : "First guides being researched"}</h3>
+                    <span className="pill">Published once sources are checked</span>
+                  </div>
+                  <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                    {upcoming.map((t) => (
+                      <li key={t.id} className="flex items-start gap-3 rounded-2xl bg-bg p-4">
+                        <span className="mt-1 size-2.5 shrink-0 rounded-full bg-ghee" aria-hidden="true" />
+                        <span>
+                          <span className="block font-bold">{t.workingTitle}</span>
+                          <span className="text-sm text-ink-3">{categories.find((c) => c.slug === t.category)?.name}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-        <p className="mt-12 flex flex-wrap gap-x-6 gap-y-2">
-          <span>
-            {posts.length === 0
-              ? "The first guides are being checked against their sources."
-              : `${posts.length === 1 ? "1 article" : `${posts.length} articles`} published. New guides appear once their sources are checked.`}
-          </span>
-          <Link href="/blog" className="link">
-            Open the journal
-          </Link>
-        </p>
       </section>
 
-      {/* Foods */}
-      <section aria-labelledby="foods-title" className="wrap mt-[var(--gap-section)]">
-        <h2 id="foods-title" className="reveal t-head mb-10">
-          <span>What you can ask for</span>
-        </h2>
-        <FoodShowcase items={foods} />
+      {/* Values bento */}
+      <section aria-labelledby="values-title" className="section pt-0">
+        <div className="container-x">
+          <div className="grid gap-6 lg:grid-cols-12">
+            <div className="reveal relative overflow-hidden rounded-[28px] lg:col-span-5 min-h-[420px]">
+              <Visual photo="about-farm" art="field" alt="Crop rows in a field at sunrise" className="!absolute inset-0" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-8 pt-24 text-white">
+                <p className="eyebrow !text-ghee">Why Desi Nature</p>
+                <h2 id="values-title" className="mt-2 text-3xl text-white sm:text-4xl">
+                  Food you can ask questions about
+                </h2>
+              </div>
+            </div>
+            <div className="reveal-stagger grid gap-6 sm:grid-cols-2 lg:col-span-7">
+              {values.map(({ icon: Icon, title, text }) => (
+                <div key={title} className="card p-7">
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-ghee-soft text-honey">
+                    <Icon className="size-6" aria-hidden="true" />
+                  </span>
+                  <h3 className="h-card mt-5">{title}</h3>
+                  <p className="muted mt-2">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* How an enquiry works */}
-      <section aria-labelledby="how-title" className="bg-wheat mt-[var(--gap-section)] py-[clamp(5rem,8vw,8rem)]">
-        <div className="wrap grid md:grid-cols-12 gap-x-8 gap-y-10 items-start">
-          <div className="reveal md:col-span-5">
-            <h2 id="how-title" className="t-head">
-              How an enquiry works
+      {/* FAQ */}
+      <section aria-labelledby="faq-title" className="section bg-bg-2">
+        <div className="container-x grid gap-12 lg:grid-cols-12">
+          <div className="reveal lg:col-span-4">
+            <p className="eyebrow">Questions</p>
+            <h2 id="faq-title" className="h-section mt-3">
+              Before you ask
             </h2>
-            <p className="mt-6 max-w-[30ch]">
-              Three steps, all in writing, and you can stop at any of them. Nothing is charged until you confirm.
-            </p>
-            <Link href="/contact" className="btn btn-ink mt-10">
-              Start an enquiry
+            <p className="lead mt-4">Straight answers about how ordering works.</p>
+            <Link href="/about" className="arrow-link mt-6">
+              How we work <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </div>
-          <div className="md:col-span-5 md:col-start-7">
-            <EnquirySlip />
-          </div>
-        </div>
-      </section>
-
-      {/* This month in Indian fields: the live thing */}
-      <section aria-labelledby="season-title" className="bg-leaf text-[var(--leaf-ink)] py-[clamp(5rem,8vw,8rem)]">
-        <div className="wrap">
-          <h2 id="season-title" className="reveal t-head mb-12">
-            This month in Indian fields
-          </h2>
-          <SeasonCalendar initialMonth={new Date().getMonth()} liveSlugs={liveSlugs} />
-        </div>
-      </section>
-
-      {/* A note on how we work */}
-      <section aria-labelledby="note-title" className="bg-surface py-[clamp(5rem,8vw,7.5rem)]">
-        <div className="wrap">
-          <article className="reveal mx-auto w-full max-w-[40rem]">
-            <div className="sheet px-6 py-10 md:p-[3.75rem]">
-            <h2 id="note-title" className="t-lead italic">
-              A note on how we work
-            </h2>
-            <div className="mt-7 space-y-5 t-body">
-              <p>
-                Desi Nature is a small, new business. We take enquiries for Indian farm foods, and we write down what
-                is worth knowing about keeping them well.
-              </p>
-              <p>
-                You will not find prices or a cart here yet. Supply of farm food changes with the season, and we would
-                rather tell you exactly what we have than show a shop that pretends to have everything.
-              </p>
-              <p>
-                When you enquire, we reply with where the food comes from, the batch details and the price. If we
-                cannot answer a question about a product, we will say so.
-              </p>
-              <p>
-                The journal follows the same rule. Every article lists its sources, and anything we cannot back up
-                stays out. If you find a mistake, tell us and we will correct it.
-              </p>
-            </div>
-            <p className="mt-8 t-lead italic">Desi Nature</p>
-            </div>
-            <div aria-hidden="true" className="perforation-x bg-paper" style={{ backgroundColor: "var(--paper)" }} />
-            <div className="sheet px-6 md:px-[3.75rem] py-5 flex flex-wrap items-center justify-between gap-4">
-              <span>Questions about a food or an article?</span>
-              <Link href="/contact" className="btn">
-                Write to us
-              </Link>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      {/* Questions */}
-      <section aria-labelledby="faq-title" className="wrap mt-[var(--gap-section)] grid md:grid-cols-12 gap-x-8 gap-y-10">
-        <div className="md:col-span-5 md:order-1 order-2">
-          <h2 id="faq-title" className="t-head">
-            Questions people ask
-          </h2>
-          <ul className="mt-6 space-y-1 t-body">
-            <li>Enquiries by form{siteConfig.whatsappNumber ? ", WhatsApp" : ""}{siteConfig.contactEmail ? " or email" : ""}</li>
-            <li>Replies in writing, with batch details</li>
-            <li>No payment taken on this website</li>
-          </ul>
-          <div className="mt-10">
+          <div className="lg:col-span-8">
             <Faq items={GENERAL_FAQ} />
           </div>
-          <div className="mt-10 flex flex-wrap items-center gap-6">
-            <Link href="/contact" className="btn">
-              Send an enquiry
-            </Link>
-            <Link href="/about" className="link">
-              About Desi Nature
-            </Link>
-          </div>
-        </div>
-        <div className="md:col-span-6 md:col-start-7 md:order-2 order-1 relative">
-          <FoodDrawing kind="field" title="Drawing of crop rows under the sun" className="w-full aspect-[3/4] block" />
-          <div className="absolute -bottom-8 right-0 md:left-[-2.5rem] md:right-auto w-[38%] md:w-1/3 aspect-square drift">
-            <FoodDrawing kind="grains" title="Drawing of a jute sack of grain" className="w-full h-full block" />
-          </div>
         </div>
       </section>
 
-      {/* Enquiry coupon */}
-      <section aria-label="Send an enquiry" className="wrap mt-[var(--gap-section)]">
-        <div className="md:px-[8.33%]">
-          <EnquiryCoupon heading="Ask what is in stock" />
+      {/* CTA */}
+      <section aria-labelledby="cta-title" className="section-tight">
+        <div className="container-x">
+          <div className="reveal bg-forest-glow relative overflow-hidden rounded-[32px] px-6 py-14 text-center text-white sm:px-12 sm:py-20">
+            <h2 id="cta-title" className="h-section mx-auto max-w-3xl text-white">
+              Tell us what your kitchen needs
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-white/75">
+              We&apos;ll reply with what we can supply, where it comes from and what it costs. No obligation.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link href="/contact" className="btn btn-gold btn-lg">
+                Send an enquiry <ArrowRight className="size-5" aria-hidden="true" />
+              </Link>
+              <Link href="/blog" className="btn btn-lg border-white/25 bg-white/10 shadow-none hover:bg-white/20">
+                Read the guides
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>
