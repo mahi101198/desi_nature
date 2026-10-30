@@ -1,0 +1,27 @@
+{
+  "runId": "2026-W44-b",
+  "week": "2026-W44",
+  "at": "2026-10-30T06:25:14.947Z",
+  "provider": "manual",
+  "publishMode": "review",
+  "dryRun": false,
+  "results": [
+    {
+      "id": "T02",
+      "slug": "what-to-check-before-buying-ghee",
+      "title": "What to check before you buy farm-sourced ghee",
+      "outcome": "manual-brief",
+      "detail": "No AI provider is configured (AI_PROVIDER=manual). The brief has been saved; write the draft from it, for example in a Claude Code session.",
+      "files": [
+        "content/briefs/what-to-check-before-buying-ghee.md"
+      ]
+    }
+  ],
+  "skipped": [],
+  "awaitingApproval": [
+    {
+      "slug": "how-to-store-ghee-at-home",
+      "status": "review"
+    }
+  ]
+}
