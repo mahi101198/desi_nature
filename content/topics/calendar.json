@@ -9,7 +9,11 @@
       "slug": "how-to-store-ghee-at-home",
       "workingTitle": "How to store ghee at home in Indian weather",
       "primaryQuery": "how to store ghee",
-      "secondaryQuestions": ["does ghee need to be refrigerated", "how to store ghee in summer", "how to know if ghee has gone bad"],
+      "secondaryQuestions": [
+        "does ghee need to be refrigerated",
+        "how to store ghee in summer",
+        "how to know if ghee has gone bad"
+      ],
       "intent": "informational",
       "reader": "Households that buy ghee in bulk or receive it from a farm or family",
       "cluster": "ghee",
@@ -17,7 +21,11 @@
       "competitors": "unknown — check top 10 results manually",
       "evidence": "Owner brief lists it first; ghee is a core product. Demand unverified.",
       "originalContribution": "Season-by-season guidance for Indian kitchens; two-jar habit; container table. Owner photographs of real storage would strengthen it.",
-      "internalLinks": ["/products#ghee", "/contact", "/editorial-policy"],
+      "internalLinks": [
+        "/products#ghee",
+        "/contact",
+        "/editorial-policy"
+      ],
       "cta": "Ghee enquiry",
       "status": "review",
       "confidence": "medium",
@@ -29,7 +37,11 @@
       "slug": "what-to-check-before-buying-ghee",
       "workingTitle": "What to check before you buy farm-sourced ghee",
       "primaryQuery": "how to check ghee quality before buying",
-      "secondaryQuestions": ["what should a ghee label show", "fssai number on ghee", "questions to ask a ghee seller"],
+      "secondaryQuestions": [
+        "what should a ghee label show",
+        "fssai number on ghee",
+        "questions to ask a ghee seller"
+      ],
       "intent": "commercial",
       "reader": "First-time buyers of ghee from small producers or online sellers",
       "cluster": "ghee",
@@ -37,9 +49,13 @@
       "competitors": "unknown — expect brand pages making purity claims; differentiate with a neutral checklist",
       "evidence": "Owner brief. Department of Consumer Affairs comparative tests exist and can be cited. Demand unverified.",
       "originalContribution": "Checklist of label fields and questions to ask; explains what home 'purity tests' can and cannot show, citing FSSAI guidance only.",
-      "internalLinks": ["/blog/how-to-store-ghee-at-home", "/products#ghee", "/contact"],
+      "internalLinks": [
+        "/blog/how-to-store-ghee-at-home",
+        "/products#ghee",
+        "/contact"
+      ],
       "cta": "Ghee enquiry with batch details",
-      "status": "planned",
+      "status": "researching",
       "confidence": "medium",
       "researchDate": "2026-10-20",
       "risk": "Avoid adulteration-test claims unless taken from FSSAI's own published tests."
@@ -50,7 +66,11 @@
       "slug": "how-to-store-honey-at-home",
       "workingTitle": "How to store honey at home, and why it crystallises",
       "primaryQuery": "how to store honey",
-      "secondaryQuestions": ["should honey be refrigerated", "why does honey crystallise", "how to liquefy crystallised honey"],
+      "secondaryQuestions": [
+        "should honey be refrigerated",
+        "why does honey crystallise",
+        "how to liquefy crystallised honey"
+      ],
       "intent": "informational",
       "reader": "Households keeping honey through Indian summers and winters",
       "cluster": "honey",
@@ -58,7 +78,11 @@
       "competitors": "unknown",
       "evidence": "Owner brief. Demand unverified.",
       "originalContribution": "Indian-season framing; plain explanation of crystallisation without purity myths.",
-      "internalLinks": ["/products#honey", "/blog/how-to-store-ghee-at-home", "/contact"],
+      "internalLinks": [
+        "/products#honey",
+        "/blog/how-to-store-ghee-at-home",
+        "/contact"
+      ],
       "cta": "Honey enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -71,7 +95,11 @@
       "slug": "how-to-store-wheat-and-grains-at-home",
       "workingTitle": "How to store wheat and grains at home through the monsoon",
       "primaryQuery": "how to store wheat at home",
-      "secondaryQuestions": ["how to keep insects out of rice", "neem leaves in grain storage", "how long can wheat be stored"],
+      "secondaryQuestions": [
+        "how to keep insects out of rice",
+        "neem leaves in grain storage",
+        "how long can wheat be stored"
+      ],
       "intent": "informational",
       "reader": "Families buying a year's wheat or rice after harvest",
       "cluster": "grains",
@@ -79,7 +107,10 @@
       "competitors": "unknown",
       "evidence": "Owner brief. ICAR and state agriculture department storage advisories exist and should be cited.",
       "originalContribution": "Household-scale steps drawn from official post-harvest guidance, adapted to flats without a store room.",
-      "internalLinks": ["/products#grains-and-flours", "/contact"],
+      "internalLinks": [
+        "/products#grains-and-flours",
+        "/contact"
+      ],
       "cta": "Grains enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -92,7 +123,11 @@
       "slug": "compost-vs-vermicompost",
       "workingTitle": "Compost or vermicompost: which suits an Indian home garden",
       "primaryQuery": "compost vs vermicompost",
-      "secondaryQuestions": ["is vermicompost better than compost", "how much vermicompost per pot", "can i make vermicompost in a flat"],
+      "secondaryQuestions": [
+        "is vermicompost better than compost",
+        "how much vermicompost per pot",
+        "can i make vermicompost in a flat"
+      ],
       "intent": "informational",
       "reader": "Terrace and balcony gardeners in Indian cities",
       "cluster": "garden",
@@ -100,7 +135,9 @@
       "competitors": "unknown",
       "evidence": "Owner brief. Agricultural university extension material available.",
       "originalContribution": "Side-by-side comparison for small spaces; owner's own garden photographs if available.",
-      "internalLinks": ["/categories/garden-and-field"],
+      "internalLinks": [
+        "/categories/garden-and-field"
+      ],
       "cta": "Journal subscription or related garden article",
       "status": "planned",
       "confidence": "medium",
@@ -112,7 +149,11 @@
       "slug": "why-pomegranate-flowers-drop",
       "workingTitle": "Why pomegranate flowers drop before the fruit sets",
       "primaryQuery": "pomegranate flower drop",
-      "secondaryQuestions": ["male and female pomegranate flowers", "pomegranate flowers falling in pot", "how to increase fruit set in pomegranate"],
+      "secondaryQuestions": [
+        "male and female pomegranate flowers",
+        "pomegranate flowers falling in pot",
+        "how to increase fruit set in pomegranate"
+      ],
       "intent": "informational",
       "reader": "Home growers with a pomegranate in a pot or yard",
       "cluster": "garden",
@@ -120,7 +161,9 @@
       "competitors": "unknown",
       "evidence": "Owner brief. ICAR-NRC on Pomegranate (Solapur) publishes cultivation guidance to cite.",
       "originalContribution": "Explains flower types with photographs; troubleshooting table by cause.",
-      "internalLinks": ["/blog/compost-vs-vermicompost"],
+      "internalLinks": [
+        "/blog/compost-vs-vermicompost"
+      ],
       "cta": "Related garden articles",
       "status": "planned",
       "confidence": "medium",
@@ -132,7 +175,11 @@
       "slug": "how-to-choose-farm-produce-online",
       "workingTitle": "How to choose farm produce online without being misled",
       "primaryQuery": "how to buy farm fresh produce online",
-      "secondaryQuestions": ["how to verify a farm seller", "what does farm fresh mean", "questions to ask before ordering food online"],
+      "secondaryQuestions": [
+        "how to verify a farm seller",
+        "what does farm fresh mean",
+        "questions to ask before ordering food online"
+      ],
       "intent": "commercial",
       "reader": "Urban buyers comparing small online food sellers",
       "cluster": "sourcing",
@@ -140,7 +187,11 @@
       "competitors": "unknown",
       "evidence": "Owner brief. Demand unverified.",
       "originalContribution": "A seller-verification checklist (FSSAI licence lookup, batch details, return terms) that applies to Desi Nature too.",
-      "internalLinks": ["/blog/what-to-check-before-buying-ghee", "/about", "/contact"],
+      "internalLinks": [
+        "/blog/what-to-check-before-buying-ghee",
+        "/about",
+        "/contact"
+      ],
       "cta": "Enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -152,7 +203,10 @@
       "slug": "what-farm-to-home-sourcing-means",
       "workingTitle": "What farm-to-home sourcing means, and what it cannot promise",
       "primaryQuery": "farm to home meaning",
-      "secondaryQuestions": ["is farm to home cheaper", "farm to home food safety"],
+      "secondaryQuestions": [
+        "is farm to home cheaper",
+        "farm to home food safety"
+      ],
       "intent": "informational",
       "reader": "People curious about buying directly from farms",
       "cluster": "sourcing",
@@ -160,7 +214,10 @@
       "competitors": "unknown",
       "evidence": "Owner brief. Needs the owner's real sourcing process to be useful.",
       "originalContribution": "Desi Nature's actual sourcing steps, supplied by the owner.",
-      "internalLinks": ["/about", "/blog/how-to-choose-farm-produce-online"],
+      "internalLinks": [
+        "/about",
+        "/blog/how-to-choose-farm-produce-online"
+      ],
       "cta": "About page and enquiry",
       "status": "blocked",
       "blockedReason": "Needs the owner's real sourcing process (who supplies, how batches are checked). Cannot be written honestly without it.",
@@ -173,7 +230,11 @@
       "slug": "how-to-read-an-fssai-food-label",
       "workingTitle": "How to read an FSSAI food label",
       "primaryQuery": "how to read fssai label",
-      "secondaryQuestions": ["fssai licence vs registration", "what is best before date", "veg symbol on food label"],
+      "secondaryQuestions": [
+        "fssai licence vs registration",
+        "what is best before date",
+        "veg symbol on food label"
+      ],
       "intent": "informational",
       "reader": "Shoppers who want to check packaged food",
       "cluster": "sourcing",
@@ -181,7 +242,10 @@
       "competitors": "unknown — FSSAI's own pages likely rank; add practical examples",
       "evidence": "FSSAI Labelling and Display Regulations 2020 are the primary source.",
       "originalContribution": "Annotated drawing of a label; how to look up a licence number.",
-      "internalLinks": ["/blog/what-to-check-before-buying-ghee", "/blog/how-to-choose-farm-produce-online"],
+      "internalLinks": [
+        "/blog/what-to-check-before-buying-ghee",
+        "/blog/how-to-choose-farm-produce-online"
+      ],
       "cta": "Enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -193,7 +257,11 @@
       "slug": "how-to-store-atta",
       "workingTitle": "How long atta keeps, and how to store it",
       "primaryQuery": "how to store atta",
-      "secondaryQuestions": ["how long does wheat flour last", "why atta smells bitter", "insects in atta"],
+      "secondaryQuestions": [
+        "how long does wheat flour last",
+        "why atta smells bitter",
+        "insects in atta"
+      ],
       "intent": "informational",
       "reader": "Households buying stone-ground or chakki atta",
       "cluster": "grains",
@@ -201,7 +269,10 @@
       "competitors": "unknown",
       "evidence": "Demand unverified. Distinct from T04 (whole grain) — flour goes stale faster.",
       "originalContribution": "Practical batch-size advice for fresh-milled flour.",
-      "internalLinks": ["/blog/how-to-store-wheat-and-grains-at-home", "/products#grains-and-flours"],
+      "internalLinks": [
+        "/blog/how-to-store-wheat-and-grains-at-home",
+        "/products#grains-and-flours"
+      ],
       "cta": "Grains and flours enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -213,7 +284,10 @@
       "slug": "how-to-store-millets",
       "workingTitle": "How to store millets and millet flour",
       "primaryQuery": "how to store millets",
-      "secondaryQuestions": ["millet flour shelf life", "why millet flour turns bitter"],
+      "secondaryQuestions": [
+        "millet flour shelf life",
+        "why millet flour turns bitter"
+      ],
       "intent": "informational",
       "reader": "Households starting to cook with ragi, jowar, bajra",
       "cluster": "grains",
@@ -221,7 +295,10 @@
       "competitors": "unknown",
       "evidence": "Indian Institute of Millets Research (ICAR-IIMR) material available.",
       "originalContribution": "Storage only; avoids health-benefit claims that dominate the topic.",
-      "internalLinks": ["/blog/how-to-store-atta", "/products#grains-and-flours"],
+      "internalLinks": [
+        "/blog/how-to-store-atta",
+        "/products#grains-and-flours"
+      ],
       "cta": "Grains enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -234,7 +311,10 @@
       "slug": "kitchen-garden-rabi-season-sowing",
       "workingTitle": "What to sow in a kitchen garden in November and December",
       "primaryQuery": "vegetables to grow in november in india",
-      "secondaryQuestions": ["winter vegetables for terrace garden", "rabi vegetables list"],
+      "secondaryQuestions": [
+        "winter vegetables for terrace garden",
+        "rabi vegetables list"
+      ],
       "intent": "informational",
       "reader": "Home gardeners planning winter sowing",
       "cluster": "garden",
@@ -242,7 +322,9 @@
       "competitors": "unknown",
       "evidence": "Seasonal and timely. Regional differences are large; cite state agriculture department calendars.",
       "originalContribution": "Region-split table (north plains, west, south) instead of one national list.",
-      "internalLinks": ["/blog/compost-vs-vermicompost"],
+      "internalLinks": [
+        "/blog/compost-vs-vermicompost"
+      ],
       "cta": "Garden articles",
       "status": "planned",
       "confidence": "medium",
@@ -255,7 +337,10 @@
       "slug": "growing-curry-leaves-in-a-pot",
       "workingTitle": "Growing curry leaves in a pot",
       "primaryQuery": "how to grow curry leaves in pot",
-      "secondaryQuestions": ["curry leaf plant leaves turning yellow", "curry leaf plant winter care"],
+      "secondaryQuestions": [
+        "curry leaf plant leaves turning yellow",
+        "curry leaf plant winter care"
+      ],
       "intent": "informational",
       "reader": "Balcony gardeners",
       "cluster": "garden",
@@ -263,7 +348,9 @@
       "competitors": "unknown — likely crowded; needs owner photographs to stand out",
       "evidence": "Demand unverified.",
       "originalContribution": "Only worth writing with first-hand photographs or notes from the owner.",
-      "internalLinks": ["/blog/compost-vs-vermicompost"],
+      "internalLinks": [
+        "/blog/compost-vs-vermicompost"
+      ],
       "cta": "Garden articles",
       "status": "planned",
       "confidence": "low",
@@ -275,7 +362,10 @@
       "slug": "how-to-store-pulses-at-home",
       "workingTitle": "How to keep dal and pulses free of insects",
       "primaryQuery": "how to store dal without insects",
-      "secondaryQuestions": ["pulse beetle in dal", "should dal be washed before storing"],
+      "secondaryQuestions": [
+        "pulse beetle in dal",
+        "should dal be washed before storing"
+      ],
       "intent": "informational",
       "reader": "Households buying pulses in bulk",
       "cluster": "grains",
@@ -283,7 +373,9 @@
       "competitors": "unknown",
       "evidence": "Distinct from T04: pulse beetle behaves differently from grain weevils. Cite ICAR post-harvest material.",
       "originalContribution": "Insect identification drawings; container comparison.",
-      "internalLinks": ["/blog/how-to-store-wheat-and-grains-at-home"],
+      "internalLinks": [
+        "/blog/how-to-store-wheat-and-grains-at-home"
+      ],
       "cta": "Grains enquiry",
       "status": "planned",
       "confidence": "medium",
@@ -295,7 +387,11 @@
       "slug": "how-to-store-jaggery",
       "workingTitle": "How to store jaggery so it does not melt or harden",
       "primaryQuery": "how to store jaggery",
-      "secondaryQuestions": ["jaggery melting in monsoon", "jaggery turned hard", "jaggery powder storage"],
+      "secondaryQuestions": [
+        "jaggery melting in monsoon",
+        "jaggery turned hard",
+        "jaggery powder storage"
+      ],
       "intent": "informational",
       "reader": "Households keeping jaggery through the monsoon",
       "cluster": "storage",
@@ -303,7 +399,9 @@
       "competitors": "unknown",
       "evidence": "Demand unverified. Only relevant if jaggery becomes a product or a strong reader need is confirmed.",
       "originalContribution": "Humidity-focused advice.",
-      "internalLinks": ["/blog/how-to-store-honey-at-home"],
+      "internalLinks": [
+        "/blog/how-to-store-honey-at-home"
+      ],
       "cta": "General enquiry",
       "status": "planned",
       "confidence": "low",
@@ -323,7 +421,11 @@
       "competitors": "n/a — brand page",
       "evidence": "Owner must supply the real process.",
       "originalContribution": "First-hand process, photographs and documents from the owner.",
-      "internalLinks": ["/about", "/products", "/contact"],
+      "internalLinks": [
+        "/about",
+        "/products",
+        "/contact"
+      ],
       "cta": "Enquiry",
       "status": "blocked",
       "blockedReason": "Needs the owner's actual batch-checking process, supplier relationships and FSSAI details.",
