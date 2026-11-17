@@ -1,6 +1,6 @@
 # Content quality report
 
-Generated 2026-10-21T08:04:33.746Z
+Generated 2026-11-17T08:28:40.978Z
 
 ## Data files
 
